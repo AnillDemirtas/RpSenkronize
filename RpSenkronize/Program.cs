@@ -38,11 +38,19 @@ namespace RpSenkronize
             }
             else
             {
-             
-                program.baslat();
-                program.istegi_dinle();
-                program.loglar.log_olustur("Başlatıldı");
-                Console.ReadKey();
+                try
+                {
+                    program.baslat();
+                    program.istegi_dinle();
+                    program.loglar.log_olustur("Başlatıldı");
+                    Console.ReadKey();
+                }
+                catch (Exception ex )
+                {
+                    program.loglar.log_olustur("İlk açılış hatası" + ex);
+        
+                }
+               
 
             }
 
@@ -65,7 +73,7 @@ namespace RpSenkronize
         {
             try
             {
-                
+                loglar.log_olustur("yeni istek geldi", ConfigurationManager.AppSettings["FastChefYolu"]);
 
                 HttpListener listener = new HttpListener();
                 // Dinlenecek URL'yi belirt
@@ -101,11 +109,20 @@ namespace RpSenkronize
 
 
                         DateTime dt = Convert.ToDateTime(baslangic);
-                        gelen_baslangic = dt.ToString("yyyy-MM-dd 03:59:00");
+                        gelen_baslangic = dt.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        DateTime dt2 = DateTime.ParseExact(bitis, "dd/MM/yyyy", null);
-                        gelen_bitis = dt2.AddDays(1).ToString("yyyy-MM-dd 03:59:59");
+                        //DateTime dt2 = DateTime.ParseExact(bitis, "dd/MM/yyyy HH:mm:ss", null);
+                        DateTime dt2 = Convert.ToDateTime(bitis);
+                        gelen_bitis = dt2.ToString("yyyy-MM-dd HH:mm:ss");
 
+                        if(baslangic ==null)
+                        {
+                            gelen_baslangic = null;
+                        }
+                        if(bitis == null)
+                        {
+                            gelen_bitis = null;
+                        }
 
                         sub.connectionlar();
                         senk.genel_toplam_bilgileri(gelen_baslangic, gelen_bitis);

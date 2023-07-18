@@ -3,8 +3,9 @@ C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos R
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\bin\Debug\RpSenkronize.pdb
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\bin\Debug\Newtonsoft.Json.dll
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\bin\Debug\Newtonsoft.Json.xml
+C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.csproj.AssemblyReference.cache
+C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.csproj.SuggestedBindingRedirects.cache
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.csproj.CoreCompileInputs.cache
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.csproj.CopyComplete
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.exe
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.pdb
-C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Debug\RpSenkronize.csproj.AssemblyReference.cache

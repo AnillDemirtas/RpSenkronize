@@ -12,11 +12,14 @@ namespace RpSenkronize.Claslar
         Database dd = new Database();
         SqlCommand komut = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
+        Claslar.Loglar loglar = new Claslar.Loglar();
 
         public void genel_toplam_kayit(int sube_id, decimal toplamtutar, decimal iade, decimal iskonto, decimal iptal, bool baglanti_durumu)
         {
-            dd.OpenConnection(Database.txt);
-            komut = new SqlCommand(string.Format(@"BEGIN TRAN
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@"BEGIN TRAN
                                     IF EXISTS (
                                       SELECT * 
                                       FROM Rp_toplamlar WITH (UPDLOCK, SERIALIZABLE) 
@@ -33,14 +36,23 @@ namespace RpSenkronize.Claslar
                                       VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')
                                     END 
                                     COMMIT TRAN;", sube_id, toplamtutar, iade, iskonto, iptal, baglanti_durumu), dd.cn);
-            komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
-            komut.ExecuteNonQuery();
-            dd.CloseConnection();
+                komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                loglar.log_olustur("genel_toplam_kayit hata", ex.ToString());
+
+            }
+
         }
         public void subelerin_cok_satilan(int sube_id, string urun_adi, int sayi, bool baglanti_durumu)
         {
-            dd.OpenConnection(Database.txt);
-            komut = new SqlCommand(string.Format(@"BEGIN TRAN
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@"BEGIN TRAN
                                     IF EXISTS (
                                       SELECT * 
                                       FROM RpSubelerinCokSatilan WITH (UPDLOCK, SERIALIZABLE) 
@@ -57,13 +69,21 @@ namespace RpSenkronize.Claslar
                                       VALUES ('{0}',@urun_adi,'{2}','{3}')
                                     END 
                                     COMMIT TRAN;", sube_id, urun_adi, sayi, baglanti_durumu), dd.cn);
-            komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
-            komut.Parameters.Add(@"urun_adi", urun_adi);
-            komut.ExecuteNonQuery();
-            dd.CloseConnection();
+                komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
+                komut.Parameters.Add(@"urun_adi", urun_adi);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                loglar.log_olustur("subelerin_cok_satilan hata", ex.ToString());
+
+            }
+
         }
         public void subelerin_cok_satilan_sil()
         {
+
             dd.OpenConnection(Database.txt);
             komut = new SqlCommand(string.Format(@"truncate table RpSubelerinCokSatilan"), dd.cn);
             komut.ExecuteNonQuery();
@@ -86,8 +106,10 @@ namespace RpSenkronize.Claslar
         }
         public void acik_masa_tutari(int sube_id, decimal toplam, int sayi, bool baglanti_durumu)
         {
-            dd.OpenConnection(Database.txt);
-            komut = new SqlCommand(string.Format(@"BEGIN TRAN
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@"BEGIN TRAN
                                     IF EXISTS (
                                       SELECT * 
                                       FROM RpAcikMasalar WITH (UPDLOCK, SERIALIZABLE) 
@@ -104,10 +126,17 @@ namespace RpSenkronize.Claslar
                                       VALUES ('{0}',@toplam,'{2}','{3}')
                                     END 
                                     COMMIT TRAN;", sube_id, toplam, sayi, baglanti_durumu), dd.cn);
-            komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
-            komut.Parameters.Add(@"toplam", toplam);
-            komut.ExecuteNonQuery();
-            dd.CloseConnection();
+                komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
+                komut.Parameters.Add(@"toplam", toplam);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+
+                loglar.log_olustur("acik_masa_tutari hata", ex.ToString());
+            }
+
         }
         public void acik_masa_tutari_sil(int sube_id)
         {
@@ -118,29 +147,71 @@ namespace RpSenkronize.Claslar
         }
         public void subelerin_satilanlari(int sube_id, string urun_adi, int urun_id, decimal sayi, decimal toplam, bool baglanti_durumu)
         {
-            dd.OpenConnection(Database.txt);
-            komut = new SqlCommand(string.Format(@" 
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@" 
                                       INSERT INTO RpSubelerinSatilanlari (sube_id,urun_adi,urun_id,toplam_sayi,toplam_tutar,baglanti_durumu) 
                                    
                                       VALUES ('{0}',@urun_adi,'{2}','{3}',{4},'{5}') ", sube_id, urun_adi, urun_id, toplam, sayi, baglanti_durumu), dd.cn);
-            komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
-            komut.Parameters.Add(@"urun_adi", urun_adi);
-            komut.ExecuteNonQuery();
-            dd.CloseConnection();
+                komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
+                komut.Parameters.Add(@"urun_adi", urun_adi);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+
+                loglar.log_olustur("subelerin_satilanlari hata", ex.ToString());
+            }
+
 
         }
         public void satilan_urun_detaylari(int sube_id, int urun_id, string urun_adi, decimal sayi, decimal toplam, bool baglanti_durumu)
         {
-            dd.OpenConnection(Database.txt);
-            komut = new SqlCommand(string.Format(@"
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@"
                                       INSERT INTO RpSubelerinSatilanUrunDetaylari (sube_id,urun_id,urun_adi,toplam_sayi,toplam_tutar,baglanti_durumu) 
                                       OUTPUT inserted.id 
                                       VALUES ({0},'{1}',@urun_adi,'{3}',{4},'{5}')
                                   ", sube_id, urun_id, urun_adi, sayi, toplam, baglanti_durumu), dd.cn);
-            komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
-            komut.Parameters.Add(@"urun_adi", urun_adi);
-            komut.ExecuteNonQuery();
-            dd.CloseConnection();
+                komut.Parameters.AddWithValue("@baglanti_durumu", baglanti_durumu);
+                komut.Parameters.Add(@"urun_adi", urun_adi);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+
+                loglar.log_olustur("satilan_urun_detaylari hata", ex.ToString());
+            }
+
+
+        }
+        public void satilan_kasa_hareketleri(int sube_id, string kasa_adi, decimal toplam_tutar)
+        {
+            try
+            {
+                dd.OpenConnection(Database.txt);
+                komut = new SqlCommand(string.Format(@"
+                                      INSERT INTO RpSatisKasaHareketleri (sube_id,kasa_adi,tutar) 
+                                      OUTPUT inserted.id 
+                                      VALUES ({0},'{1},{2})
+                                  ", sube_id, kasa_adi, toplam_tutar), dd.cn);
+                komut.Parameters.AddWithValue("@sube_id", sube_id);
+                komut.Parameters.AddWithValue("@kasa_adi", kasa_adi);
+                komut.Parameters.AddWithValue("@tutar", toplam_tutar);
+                komut.ExecuteNonQuery();
+                dd.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+
+                loglar.log_olustur("satilan_kasa_hareketleri hata", ex.ToString());
+            }
+
 
         }
         public void subelerde_onceden_kalan_satilmayan_stoklari_sil()

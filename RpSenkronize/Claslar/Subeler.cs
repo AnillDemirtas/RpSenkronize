@@ -15,7 +15,7 @@ namespace RpSenkronize.Claslar
         Database db = new Database();
         SqlCommand komut = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter();
-
+        Claslar.Loglar loglar = new Claslar.Loglar();
 
         public SqlDataReader sube_bilgileri()
         {
@@ -31,26 +31,35 @@ namespace RpSenkronize.Claslar
         }
         public void connectionlar()
         {
-            Degiskenler.connectionlar.Clear();
-            var sube_bilgileri = this.sube_bilgileri();
-            while (sube_bilgileri.Read())
+            try
             {
-                string txt_bilgisi = string.Format(@"Data Source={0};Initial Catalog=FASTCHEF;Persist Security Info=True; User ID=sa;Password=netkod12345**", sube_bilgileri["Sube_ip"]);
-                SqlConnection con = new SqlConnection(txt_bilgisi);
-                if (QuickOpen(con, 3000) == true)
+                Degiskenler.connectionlar.Clear();
+                var sube_bilgileri = this.sube_bilgileri();
+                while (sube_bilgileri.Read())
                 {
-                    Degiskenler.connectionlar.Add(txt_bilgisi);
-                    Degiskenler.subeler.Add(int.Parse(sube_bilgileri["id"].ToString()));
+                    string txt_bilgisi = string.Format(@"Data Source={0};Initial Catalog=FASTCHEF;Persist Security Info=True; User ID=sa;Password=netkod12345**", sube_bilgileri["Sube_ip"]);
+                    SqlConnection con = new SqlConnection(txt_bilgisi);
+                    if (QuickOpen(con, 3000) == true)
+                    {
+                        Degiskenler.connectionlar.Add(txt_bilgisi);
+                        Degiskenler.subeler.Add(int.Parse(sube_bilgileri["id"].ToString()));
+
+                    }
+                    else
+                    {
+                        Degiskenler.connectionlar.Add("Yok");
+                        Degiskenler.subeler.Add(int.Parse(sube_bilgileri["id"].ToString()));
+                    }
+
 
                 }
-                else
-                {
-                    Degiskenler.connectionlar.Add("Yok");
-                    Degiskenler.subeler.Add(int.Parse(sube_bilgileri["id"].ToString()));
-                }
-
+            }
+            catch (Exception ex)
+            {
+                loglar.log_olustur("connectionlar clasında hata" + ex);
 
             }
+           
         }
         public bool QuickOpen(SqlConnection conn, int timeout)
         {
