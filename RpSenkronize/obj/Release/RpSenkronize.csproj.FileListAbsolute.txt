@@ -7,3 +7,5 @@ C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos R
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Release\RpSenkronize.csproj.CopyComplete
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Release\RpSenkronize.exe
 C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Release\RpSenkronize.pdb
+C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Release\RpSenkronize.csproj.AssemblyReference.cache
+C:\Tüm Projeler\Tüm Projeler\NetPos-30.05.2020\NetPos-Git\AltProjeler\NetPos Rp\RpSenkronize\RpSenkronize\RpSenkronize\obj\Release\RpSenkronize.csproj.SuggestedBindingRedirects.cache

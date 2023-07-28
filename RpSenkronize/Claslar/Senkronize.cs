@@ -326,7 +326,7 @@ namespace RpSenkronize.Claslar
                 urunid,
                   birim
                 HAVING 
-                  COUNT(*) > 1
+                  COUNT(*) >= 1
                 ORDER BY 
                   toplam_sayi DESC,
                   urunadi ASC
